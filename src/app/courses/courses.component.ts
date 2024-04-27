@@ -22,6 +22,8 @@ export class CoursesComponent {
   selectedSubject: string = "";
   // Egenskap för ämnen, initieras till tom array
   subjects: string[] = [];
+  // Egenskap för antalet kurser som visas, initeras till 0
+  displayedCourses: number = 0;
 
   // Egenskaper för sorteringskolumn och sorteringsordning
   sortColumn: string = ""; // Initieras till tom textsträng
@@ -40,7 +42,15 @@ export class CoursesComponent {
       this.filteredCourses = data;
       // Lägger till ämnen i subjects-arrayen från hämtade kurser, använder set för endast unika ämnen
       this.subjects = Array.from(new Set(data.map(course => course.subject)));
+      // Uppdaterar antalet kurser som visas
+      this.updateCourseDisplay();
     });
+  }
+
+  // Metod för att uppdatera antalet kurser som visas
+  updateCourseDisplay(): void {
+    // Sätter displayedCourses till längden på de filtrerade kurserna
+    this.displayedCourses = this.filteredCourses.length;
   }
 
   // Metod för att filtrera kurser baserat på det valda ämnet
@@ -52,6 +62,8 @@ export class CoursesComponent {
       // Om ett ämne är valt filreras kurserna baserat på ämnet som har valts
       this.filteredCourses = this.courselist.filter(course => course.subject === this.selectedSubject);
     }
+    // Uppdaterar antalet kurser som visas
+    this.updateCourseDisplay();
   }
 
   // Metod för att söka efter kurs och lagra filtrerade kurser, returnerar inget värde
@@ -62,6 +74,8 @@ export class CoursesComponent {
       course.courseName.toLowerCase().includes(this.searchValue.toLowerCase()) ||
       course.courseCode.toLowerCase().includes(this.searchValue.toLowerCase())
     );
+    // Uppdaterar antalet kurser som visas
+    this.updateCourseDisplay();
   }
 
   // Metod för att sortera kurserna baserat på den valda kolumnen
