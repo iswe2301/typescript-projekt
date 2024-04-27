@@ -18,6 +18,10 @@ export class CoursesComponent {
   filteredCourses: Course[] = [];
   // Egenskap av typen sträng för sökinput, initeras till tom sträng
   searchValue: string = "";
+  // Egenskap för valt ämne, initeras till tom sträng
+  selectedSubject: string = "";
+  // Egenskap för ämnen, initieras till tom array
+  subjects: string[] = [];
 
   // Egenskaper för sorteringskolumn och sorteringsordning
   sortColumn: string = ""; // Initieras till tom textsträng
@@ -27,15 +31,29 @@ export class CoursesComponent {
   constructor(private courseservice: CourseService) { }
 
   // Initmetod som körs när applikationen är startad och klar
-  ngOnInit() {
+  ngOnInit(): void {
     // Anropar metod för att hämta kurserna och prenumererar på svaret
     this.courseservice.getCourses().subscribe(data => {
       // Tar emot datan och lagrar i kurslistan (array)
       this.courselist = data;
       // Lagrar även datan i arrayen för filtrerade kurser
       this.filteredCourses = data;
+      // Lägger till ämnen i subjects-arrayen från hämtade kurser, använder set för endast unika ämnen
+      this.subjects = Array.from(new Set(data.map(course => course.subject)));
     });
   }
+
+  // Metod för att filtrera kurser baserat på det valda ämnet
+  filterBySubject(): void {
+    // Kontrollerar om inget ämne är valt
+    if (this.selectedSubject === "") {
+      this.filteredCourses = this.courselist; // Återställer till att visa alla kurser
+    } else {
+      // Om ett ämne är valt filreras kurserna baserat på ämnet som har valts
+      this.filteredCourses = this.courselist.filter(course => course.subject === this.selectedSubject);
+    }
+  }
+
   // Metod för att söka efter kurs och lagra filtrerade kurser, returnerar inget värde
   searchCourse(): void {
     // Filtrerar kurser utifrån kurslistan
