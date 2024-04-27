@@ -22,6 +22,14 @@ export class SchemeService {
     this.saveSchedule();
   }
 
+  // Metod för att ta bort en kurs från ramschemat
+  removeFromSchedule(course: Course): void {
+    // Filtrerar bort aktuell kurs baserat på kurskod
+    this.scheme = this.scheme.filter(currentCourse => currentCourse.courseCode !== course.courseCode);
+    // Anropar metod för att spara kurserna i localStorage
+    this.saveSchedule();
+  }
+
   // Metod för att hämta kurserna i ramschemat
   getSchedule(): Course[] {
     // Hämtar ramschemat från localStorage
