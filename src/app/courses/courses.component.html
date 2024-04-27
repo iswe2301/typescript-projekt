@@ -11,6 +11,17 @@
         <p>Inga kurser hittades...</p>
         }
     </div>
+    <div>
+        <!-- Selectbox för att kunna filtrera kurser baserat på ämne -->
+        <label for="subject">Välj ämne:</label>
+        <!-- Anropar metod för filtrering vid ändring av valt ämne -->
+        <select id="subject" [(ngModel)]="selectedSubject" (change)="filterBySubject()">
+            <!-- Alla ämnen som standard -->
+            <option value="">Alla ämnen</option>
+            <!-- Loopar igenom alla ämnen och skriver ut med interpolation som options i selectboxen -->
+            <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
+        </select>
+    </div>
     <div id="table-container">
         <table id="course-table">
             <thead>
