@@ -9,5 +9,7 @@
         <p>Poäng: {{ course.points }}</p>
         <p>Ämne: {{ course.subject }}</p>
         <a [href]="course.syllabus" target="_blank">Kursplan</a>
+        <!-- Knapp för att ta bort kursen från ramschemat, anropar metod vid klick -->
+        <button (click)="removeFromScheme(course)">Ta bort</button>
     </div>
 </div>
