@@ -1,1 +1,13 @@
-<p>scheme works!</p>
+<div id="course-scheme">
+    <h2>Ramschema</h2>
+    <!-- Skriver ut totala antalet HP med interpolation -->
+    <p>Totalt antal högskolepoäng: {{ totalPoints }}</p>
+    <!-- Loopar igenom kurserna i ramschemat och skriver ut varje kurs -->
+    <div id="scheme-item" *ngFor="let course of scheme">
+        <p>Kurskod: {{ course.courseCode }}</p>
+        <p>Kursnamn: {{ course.courseName }}</p>
+        <p>Poäng: {{ course.points }}</p>
+        <p>Ämne: {{ course.subject }}</p>
+        <a [href]="course.syllabus" target="_blank">Kursplan</a>
+    </div>
+</div>
