@@ -23,9 +23,9 @@
         </select>
     </div>
     <div>
-        <!-- Visa antalet kurser som visas av totala antalet kurser -->
-        <p>Visar {{ displayedCourses }} kurser av totalt {{ courselist.length }}.</p>
-      </div>
+        <!-- Listar antalet kurser som visas av totala antalet kurser -->
+        <p>Listar {{ displayedCourses }} kurser av totalt {{ courselist.length }}.</p>
+    </div>
     <div id="table-container">
         <table id="course-table">
             <thead>
@@ -39,8 +39,10 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Loopar igenom kurslistan och skriver ut varje kurs i en egen tabellrad med kolumner för varje del -->
-                <tr *ngFor="let course of filteredCourses">
+                <!-- Loopar igenom kurslistan och skriver ut varje kurs i en egen tabellrad med kolumner för varje del
+                Använder paginering för att endast visa 30 kurser på aktuell sida -->
+                <tr
+                    *ngFor="let course of filteredCourses | paginate: { itemsPerPage: coursesPerPage, currentPage: thisPage }">
                     <!-- Interpolation för att visa datan -->
                     <td>{{ course.courseCode }}</td>
                     <td class="coursename">{{ course.courseName }}</td>
@@ -52,4 +54,7 @@
             </tbody>
         </table>
     </div>
+    <!-- Pagineringskomponent, ändrar namnen på labels till svenska -->
+    <pagination-controls (pageChange)="thisPage = $event" previousLabel="Föregående"
+        nextLabel="Nästa"></pagination-controls>
 </div>
