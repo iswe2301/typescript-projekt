@@ -36,6 +36,7 @@
                     <th (click)="sortCourses('points')">Poäng <i class="fa-solid fa-sort"></i></th>
                     <th (click)="sortCourses('subject')">Ämne <i class="fa-solid fa-sort"></i></th>
                     <th id="syllabus">Kursplan</th>
+                    <th>Lägg till</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,6 +51,7 @@
                     <td>{{ course.subject }}</td>
                     <!-- Property bindning för att skapa en länk med datan -->
                     <td><a [href]="course.syllabus" target="_blank">Kursplan</a></td>
+                    <td><button (click)="addToScheme(course)">Lägg till</button></td>
                 </tr>
             </tbody>
         </table>
