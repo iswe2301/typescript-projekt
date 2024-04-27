@@ -22,6 +22,10 @@
             <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
         </select>
     </div>
+    <div>
+        <!-- Visa antalet kurser som visas av totala antalet kurser -->
+        <p>Visar {{ displayedCourses }} kurser av totalt {{ courselist.length }}.</p>
+      </div>
     <div id="table-container">
         <table id="course-table">
             <thead>
