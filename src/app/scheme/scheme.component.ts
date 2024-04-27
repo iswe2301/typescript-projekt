@@ -26,4 +26,13 @@ export class SchemeComponent {
     // Hämtar totala antalet högskolepoäng i ramschemat
     this.totalPoints = this.schemeservice.getTotalPoints();
   }
+
+  // Metod för att ta bort en kurs från ramschemat
+  removeFromScheme(course: Course): void {
+    // Anropar metod för att ta bort kursen, skickar med kursobjektet
+    this.schemeservice.removeFromSchedule(course);
+    // Uppdaterar visningen ramschemat och antalet högskolepoäng efter att kursen har tagits bort (anropar metoderna i servicen)
+    this.scheme = this.schemeservice.getSchedule();
+    this.totalPoints = this.schemeservice.getTotalPoints();
+  }
 }
