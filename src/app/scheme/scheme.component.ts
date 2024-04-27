@@ -1,12 +1,29 @@
 import { Component } from '@angular/core';
+import { Course } from '../models/course';
+import { SchemeService } from '../services/scheme.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-scheme',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './scheme.component.html',
   styleUrl: './scheme.component.scss'
 })
 export class SchemeComponent {
 
+  // Egenskaper
+  scheme: Course[] = []; // Array för att lagra kurser i ramschemat, initeras till tom array av typen interfacet Course
+  totalPoints: number = 0; // Totala antalet högskolepoäng i ramschemat, initeras till 0
+
+    // Konstruktor som importerar service för ramschema
+  constructor(private schemeservice: SchemeService) { }
+
+  // Initmetod som körs när applikationen är startad och klar
+  ngOnInit(): void {
+    // Hämtar ramschemat från servicen
+    this.scheme = this.schemeservice.getSchedule();
+    // Hämtar totala antalet högskolepoäng i ramschemat
+    this.totalPoints = this.schemeservice.getTotalPoints();
+  }
 }
