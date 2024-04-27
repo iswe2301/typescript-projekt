@@ -3,11 +3,12 @@ import { Course } from '../models/course';
 import { CourseService } from '../services/course.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-courses',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgxPaginationModule], // Importerar pagineringsmodul
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss'
 })
@@ -24,6 +25,10 @@ export class CoursesComponent {
   subjects: string[] = [];
   // Egenskap för antalet kurser som visas, initeras till 0
   displayedCourses: number = 0;
+  // Egenskap för aktuell sida, initeras till 1
+  thisPage: number = 1;
+  // Egenskap för antalet kurser som ska visas på en sida, initieras till 30
+  coursesPerPage: number = 30;
 
   // Egenskaper för sorteringskolumn och sorteringsordning
   sortColumn: string = ""; // Initieras till tom textsträng
