@@ -1,1 +1,40 @@
-<p>courses works!</p>
+<div id="course-info">
+    <h2>Kurser</h2>
+    <div id="search-box">
+        <label for="search">Sök <i class="fa-solid fa-magnifying-glass"></i></label>
+        <!-- Använder tvåvägsdatabindning för input i sökfältet, anropar metod för att filtrera kurser vid input -->
+        <input type="text" id="search" name="search" placeholder="Sök efter kurskod eller kursnamn"
+            [(ngModel)]="searchValue" (input)="searchCourse()">
+        <!-- Kontrollerar om det inte finns något matchande resultat -->
+        @if(filteredCourses.length === 0) {
+        <!-- Skriver ut att inga kursern kunde hittas -->
+        <p>Inga kurser hittades...</p>
+        }
+    </div>
+    <div id="table-container">
+        <table id="course-table">
+            <thead>
+                <tr>
+                    <!-- Eventbinding som vid klick anropar metod för att sortera kurser -->
+                    <th (click)="sortCourses('courseCode')">Kurskod <i class="fa-solid fa-sort"></i></th>
+                    <th (click)="sortCourses('courseName')" id="name">Namn <i class="fa-solid fa-sort"></i></th>
+                    <th (click)="sortCourses('points')">Poäng <i class="fa-solid fa-sort"></i></th>
+                    <th (click)="sortCourses('subject')">Ämne <i class="fa-solid fa-sort"></i></th>
+                    <th id="syllabus">Kursplan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loopar igenom kurslistan och skriver ut varje kurs i en egen tabellrad med kolumner för varje del -->
+                <tr *ngFor="let course of filteredCourses">
+                    <!-- Interpolation för att visa datan -->
+                    <td>{{ course.courseCode }}</td>
+                    <td class="coursename">{{ course.courseName }}</td>
+                    <td>{{ course.points }}</td>
+                    <td>{{ course.subject }}</td>
+                    <!-- Property bindning för att skapa en länk med datan -->
+                    <td><a [href]="course.syllabus" target="_blank">Kursplan</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
