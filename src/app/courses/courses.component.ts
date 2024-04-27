@@ -4,6 +4,7 @@ import { CourseService } from '../services/course.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SchemeService } from '../services/scheme.service';
 
 @Component({
   selector: 'app-courses',
@@ -34,8 +35,8 @@ export class CoursesComponent {
   sortColumn: string = ""; // Initieras till tom textsträng
   sortOrder: boolean = true; // Initieras till true (stigande ordning)
 
-  // Konstruktor som importerar service för kurser
-  constructor(private courseservice: CourseService) { }
+  // Konstruktor som importerar service för kurser samt ramschema
+  constructor(private courseservice: CourseService, private schemeservice: SchemeService) { }
 
   // Initmetod som körs när applikationen är startad och klar
   ngOnInit(): void {
@@ -111,5 +112,10 @@ export class CoursesComponent {
         return secondRow > firstRow ? 1 : -1;
       }
     });
+  }
+
+  // Metod för att lägga till kurs i ramschemat när användaren klickar på lägg till-knappen
+  addToScheme(course: Course): void {
+    this.schemeservice.addToSchedule(course); // Anropar metod för att lägga till kurs i ramschemat (service).
   }
 }
