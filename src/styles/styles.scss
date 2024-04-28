@@ -1,0 +1,97 @@
+@use 'abstracts';
+
+// Globala värden
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// Typografi
+html {
+    font-size: 62.5%;
+    height: 100%;
+}
+
+// Body
+body {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    font-family: abstracts.$font-text;
+    font-weight: 400;
+    background-color: abstracts.$bg-color-white;
+    color: abstracts.$text-color;
+    height: 100%;
+}
+
+// Huvudinnehåll
+main {
+    @include abstracts.center-flex();
+    background: abstracts.$bg-color-white;
+    width: 80%;
+    max-width: 1200px;
+    min-height: 100vh;
+    margin: 15rem auto 0 auto;
+    position: relative;
+}
+
+/* Styling för rubriker, mixin för gemensamma egenskaper */
+h1 {
+    @include abstracts.heading-style(3rem, 3rem, 400);
+    text-align: left;
+    letter-spacing: 0.5rem;
+    color: abstracts.$light-text-color;
+    margin: 1rem 0 0 0;
+}
+
+h2 {
+    @include abstracts.heading-style(2.6rem, 3.6rem, 600);
+    margin: 2rem 0 2rem 0;
+}
+
+h3 {
+    @include abstracts.heading-style(2.2rem, 3.2rem, 600);
+    margin: 2rem 0 2rem 0;
+}
+
+h4 {
+    @include abstracts.heading-style(2rem, 3rem, 600);
+    margin: 2rem 0 1rem 0;
+}
+
+// Styling för paragrafer
+p {
+    margin: 1.5rem 0;
+    max-width: 75ch;
+}
+
+// Styling för länkar
+a {
+    color: abstracts.$link-color;
+
+    &:hover {
+        color: abstracts.$hover-color;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    h3 {
+        font-size: 2rem;
+    }
+
+    h4 {
+        font-size: 1.8rem;
+    }
+
+    main {
+        width: 90%;
+    }
+}
