@@ -12,3 +12,26 @@
         <li><a routerLink="/scheme" routerLinkActive="active">RAMSCHEMA</a></li>
     </ul>
 </nav>
+
+<!-- Mobilmeny -->
+<div class="menu-container">
+    <!-- Navmeny som växlar klass baserat på "isVisible" för att visa/dölja menyn -->
+    <nav class="mobile-menu" [class]="{'show': isVisible}">
+        <ul>
+            <!-- Navlänkar, när de klickas anropas hideMenu för att dölja menyn (event-binding) -->
+            <li><a routerLink="/home" routerLinkActive="active" (click)="hideMenu()">HEM</a></li>
+            <li><a routerLink="/courses" routerLinkActive="active" (click)="hideMenu()">KURSER</a></li>
+            <li><a routerLink="/scheme" routerLinkActive="active" (click)="hideMenu()">RAMSCHEMA</a></li>
+        </ul>
+    </nav>
+    <!-- Property-binding för att växla klass, overlay som visas när menyn är öppen. När isVisible är sant (menyn är öppen), läggs klassen opacity till. Om isVisible är falskt är overlayen inte synlig. Klick på overlayen anropar funktion som döljer menyn -->
+    <div id="overlay" [class.opacity]="isVisible" (click)="hideMenu()"></div>
+     <!-- Knapp för att växla mobilmenyns synlighet. Visar antingen menyikonen eller stängikonen baserat på isVisible -->
+    <button class="menu-toggle" (click)="toggleMenu()">
+        MENY
+<!-- Property-binding för styling, atängikonen visas (opacitet 1) endast när `isVisible` är sant (öppen meny). Annars sätts opaciteten till 0. När menyn öppnas/stängs får ikonen en rotationseffekt 360 grader och tillbaka. -->
+<i class="fa-solid fa-bars" [style]="{'opacity': isVisible ? '0' : '1'}"></i>
+        <i class="fa-solid fa-xmark"
+            [style]="{'opacity': isVisible ? '1' : '0', 'transform': isVisible ? 'translate(-50%, -50%) rotate(360deg)' : 'translate(-50%, -50%) rotate(-360deg)'}"></i>
+    </button>
+</div>
