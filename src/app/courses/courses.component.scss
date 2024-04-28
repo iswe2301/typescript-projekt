@@ -1,0 +1,137 @@
+@use '../../styles/abstracts';
+
+// Styling för app-courses, ärver mains storlek
+:host {
+    width: 100%;
+}
+
+// Styling för labels
+label {
+    @include abstracts.heading-style(1.6rem, 2.6rem, 600);
+    margin-bottom: 0.5rem;
+}
+
+/* Visar sök som flex column */
+#search-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4rem;
+    margin-right: 1rem;
+    width: 100%;
+}
+
+/* Typsnitt till placeholder i input */
+input,
+select {
+    height: 3.5rem;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-size: 1.6rem;
+    padding: 0 1rem;
+    margin-top: 0.5rem;
+    border: 1px solid abstracts.$primary-color;
+    border-radius: 5px;
+}
+
+#course-info {
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+// Gör tabellen responsiv, tillåter scroll åt höger vid overflow.
+#table-container {
+    overflow-x: auto;
+    width: 100%;
+}
+
+/* Responsiv tabell */
+table {
+    width: 100%;
+    margin: 2rem auto;
+    border-collapse: collapse;
+
+    th {
+        min-width: 120px;
+        padding: 0 0.5rem;
+        text-align: center;
+        font-weight: 400;
+        letter-spacing: 0.2rem;
+        color: abstracts.$light-text-color;
+        background-color: abstracts.$primary-color;
+        border-bottom: 1px solid darken(abstracts.$primary-color, 10%);
+        cursor: pointer;
+
+        i {
+            margin-left: 0.5rem;
+        }
+    }
+
+    /* Centrerar text i tabelldata */
+    td {
+        padding: 0.5rem 1rem;
+        text-align: center;
+        border-bottom: 1px solid #ccc;
+    }
+
+    tbody tr:hover {
+        background-color: abstracts.$table-hover; // Hover för tabellrader
+    }
+
+    // Ändrar till default cursor
+    #syllabus {
+        cursor: default !important;
+    }
+
+}
+
+#subject-filter {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    width: 100%;
+}
+
+#filter-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+// Extend för knappstyling
+button {
+    @extend %button-style;
+    font-size: 1.6rem;
+    font-weight: 600;
+    width: 13rem;
+}
+
+// Styling för pagination
+#paginator {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+// Styling för mindre enheter
+@media (max-width: 860px) {
+    #filter-box {
+        flex-direction: column;
+    }
+
+    #search-box {
+        margin-right: 0;
+        margin-bottom: 2rem;
+    }
+
+    #subject-filter {
+        margin-left: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+// Styling för mindre enheter
+@media (max-width: 600px) {
+
+    #course-info {
+        padding: 2rem 0 5rem 0;
+    }
+}
