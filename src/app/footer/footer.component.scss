@@ -1,3 +1,5 @@
+@use '../../styles/abstracts';
+
 footer {
     display: flex;
     flex-direction: column;
@@ -5,17 +7,22 @@ footer {
     background-color: black;
     margin-top: 5rem;
     box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.70);
+    font-size: 1.4rem;
 
     h2 {
-        font-size: 1.8rem;
-        margin: 2rem 0 1rem 0;
+        font-size: 1.6rem;
+        margin: 2rem 0 0.5rem 0;
         color: white;
     }
 
     a {
         text-decoration: none;
         padding: 1rem 0;
-        color: #b4dbf5;
+        color: abstracts.$light-text-color;
+    }
+
+    i {
+        margin-right: 0.5rem;
     }
 }
 
@@ -32,7 +39,8 @@ footer {
 }
 
 #bottom-foot {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+    margin-top: 1rem;
     display: flex;
     justify-content: center;
 }
