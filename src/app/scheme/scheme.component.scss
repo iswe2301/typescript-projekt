@@ -1,0 +1,72 @@
+@use '../../styles/abstracts';
+
+// Styling för app-courses, ärver mains storlek
+:host {
+    width: 100%;
+}
+
+#scheme-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+// Gör tabellen responsiv, tillåter scroll åt höger vid overflow.
+#table-container {
+    overflow-x: auto;
+    width: 100%;
+}
+
+/* Responsiv tabell */
+table {
+    width: 100%;
+    margin: 2rem auto;
+    border-collapse: collapse;
+
+    th {
+        padding: 0 0.5rem;
+        text-align: center;
+        font-weight: 400;
+        letter-spacing: 0.2rem;
+        color: abstracts.$light-text-color;
+        background-color: abstracts.$primary-color;
+        border-bottom: 1px solid darken(abstracts.$primary-color, 10%);
+
+        i {
+            margin-left: 0.5rem;
+        }
+    }
+
+    /* Centrerar text i tabelldata */
+    td {
+        padding: 0.5rem 1rem;
+        text-align: center;
+        border-bottom: 1px solid #ccc;
+    }
+
+    tbody tr:hover {
+        background-color: abstracts.$table-hover; // Hover för tabellrader
+    }
+
+}
+
+// Extend för knappstyling
+button {
+    @extend %button-style;
+    font-size: 1.6rem;
+    font-weight: 600;
+    width: 13rem;
+    background-color: #e53434;
+
+    &:hover {
+        background-color: darken(#e53434, 10%);
+    }
+}
+
+// Styling för mindre enheter
+@media (max-width: 600px) {
+
+    #scheme-container {
+        padding: 2rem 0 5rem 0;
+    }
+}

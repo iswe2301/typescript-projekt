@@ -1,15 +1,32 @@
-<div id="course-scheme">
+<div id="scheme-container">
     <h2>Ramschema</h2>
-    <!-- Skriver ut totala antalet HP med interpolation -->
-    <p>Totalt antal högskolepoäng: {{ totalPoints }}</p>
-    <!-- Loopar igenom kurserna i ramschemat och skriver ut varje kurs -->
-    <div id="scheme-item" *ngFor="let course of scheme">
-        <p>Kurskod: {{ course.courseCode }}</p>
-        <p>Kursnamn: {{ course.courseName }}</p>
-        <p>Poäng: {{ course.points }}</p>
-        <p>Ämne: {{ course.subject }}</p>
-        <a [href]="course.syllabus" target="_blank">Kursplan</a>
-        <!-- Knapp för att ta bort kursen från ramschemat, anropar metod vid klick -->
-        <button (click)="removeFromScheme(course)">Ta bort</button>
+    <div id="table-container">
+        <table id="course-table">
+            <thead>
+                <tr>
+                    <!-- Eventbinding som vid klick anropar metod för att sortera kurser -->
+                    <th>Kurskod</th>
+                    <th id="name">Namn</th>
+                    <th>Poäng</th>
+                    <th>Ämne</th>
+                    <th id="syllabus">Kursplan</th>
+                    <th>Ta bort</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loopar igenom kurslistan och skriver ut varje kurs i en egen tabellrad med kolumner för varje del -->
+                <tr *ngFor="let course of scheme">
+                    <!-- Interpolation för att visa datan -->
+                    <td>{{ course.courseCode }}</td>
+                    <td class="coursename">{{ course.courseName }}</td>
+                    <td>{{ course.points }}</td>
+                    <td>{{ course.subject }}</td>
+                    <!-- Property bindning för att skapa en länk med datan -->
+                    <td><a [href]="course.syllabus" target="_blank">Kursplan</a></td>
+                    <!-- Knapp för att ta bort kursen från ramschemat, anropar metod vid klick -->
+                    <td><button (click)="removeFromScheme(course)">Ta bort <i class="fa-solid fa-trash-can"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
