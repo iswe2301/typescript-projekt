@@ -7,9 +7,10 @@
 
 <nav id="menu">
     <ul>
-        <li><a routerLink="/home" routerLinkActive="active">HEM</a></li>
-        <li><a routerLink="/courses" routerLinkActive="active">KURSER</a></li>
-        <li><a routerLink="/scheme" routerLinkActive="active">RAMSCHEMA</a></li>
+        <!-- Navlänkar som vid klick anropar metod för att byta headerbild -->
+        <li><a routerLink="/home" routerLinkActive="active" (click)="changeImage('./assets/images/header1.jpg')">HEM</a></li>
+        <li><a routerLink="/courses" routerLinkActive="active" (click)="changeImage('./assets/images/header2.jpg')">KURSER</a></li>
+        <li><a routerLink="/scheme" routerLinkActive="active" (click)="changeImage('./assets/images/header3.jpg')">RAMSCHEMA</a></li>
     </ul>
 </nav>
 
@@ -19,9 +20,9 @@
     <nav class="mobile-menu" [class]="{'show': isVisible}">
         <ul>
             <!-- Navlänkar, när de klickas anropas hideMenu för att dölja menyn (event-binding) -->
-            <li><a routerLink="/home" routerLinkActive="active" (click)="hideMenu()">HEM</a></li>
-            <li><a routerLink="/courses" routerLinkActive="active" (click)="hideMenu()">KURSER</a></li>
-            <li><a routerLink="/scheme" routerLinkActive="active" (click)="hideMenu()">RAMSCHEMA</a></li>
+            <li><a routerLink="/home" routerLinkActive="active" (click)="hideMenu()" (click)="changeImage('./assets/images/header1.jpg')">HEM</a></li>
+            <li><a routerLink="/courses" routerLinkActive="active" (click)="hideMenu()" (click)="changeImage('./assets/images/header2.jpg')">KURSER</a></li>
+            <li><a routerLink="/scheme" routerLinkActive="active" (click)="hideMenu()" (click)="changeImage('./assets/images/header3.jpg')">RAMSCHEMA</a></li>
         </ul>
     </nav>
     <!-- Property-binding för att växla klass, overlay som visas när menyn är öppen. När isVisible är sant (menyn är öppen), läggs klassen opacity till. Om isVisible är falskt är overlayen inte synlig. Klick på overlayen anropar funktion som döljer menyn -->
@@ -36,4 +37,5 @@
     </button>
 </div>
 
-<img id="headerimg" src="./assets/images/header1.jpg" alt="Två stundenter som pluggar webbutveckling">
+<!-- Headerbild med propertybindning för att kunna byta ut bilden beroende på sida -->
+<img id="headerimg" [src]="headerImage" alt="Två stundenter som pluggar webbutveckling">
