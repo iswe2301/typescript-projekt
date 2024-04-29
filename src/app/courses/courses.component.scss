@@ -111,6 +111,37 @@ button {
     justify-content: center;
 }
 
+/* Styling för tooltip med hjälp-cursor */
+.tooltip {
+    position: relative;
+    cursor: help;
+}
+
+/* Döljer tooltip initialt, stylar boxen och text, transition 0.5 sekunders opacity, absolut positionering */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 100%;
+    max-width: 30rem;
+    background-color: abstracts.$transparent-grey;
+    color: abstracts.$light-text-color;
+    font-size: 1.4rem;
+    text-align: center;
+    border-radius: 5px;
+    padding: 2rem 1rem;
+    position: absolute;
+    z-index: 1;
+    top: 4rem;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+/* 100% opacity när tooltip visas vid hover */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
 // Styling för mindre enheter
 @media (max-width: 860px) {
     #filter-box {
