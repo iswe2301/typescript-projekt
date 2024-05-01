@@ -1,5 +1,6 @@
 @use '../../styles/abstracts';
 
+// Styling för footer
 footer {
     display: flex;
     flex-direction: column;
@@ -38,13 +39,27 @@ footer {
     align-items: center;
 }
 
+// Botten-footer med copyright
 #bottom-foot {
     font-size: 1.2rem;
-    margin-top: 1rem;
     display: flex;
     justify-content: center;
 }
 
+// Styling för sociala-medie ikoner
+#social-media {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 2rem 1rem;
+
+    a {
+        margin: 0 1rem;
+        padding: 1rem;
+    }
+}
+
+// Mindre enheter
 @media (max-width: 800px) {
     .footer-col {
         margin: 0 1.8rem;
