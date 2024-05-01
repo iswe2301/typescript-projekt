@@ -5,7 +5,7 @@ header {
     background-color: #415a75;
     color: white;
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     position: fixed;
     top: 0;
     left: 0;
@@ -84,10 +84,22 @@ nav {
     object-fit: cover;
 }
 
+#header-links {
+ margin: 1rem 0 0 0;
+ font-size: 1.5rem;
+ i {
+    margin-right: 0.5rem;
+ }
+ a {
+    padding: 1rem 2rem 0 0;
+ }
+}
+
 // Styling för enheter mindre än 600px bredd
 @media (max-width: 600px) {
 
-    #menu {
+    // Döljer ord. nav-meny + headerlänkar
+    #menu, #header-links {
         display: none;
     }
 
@@ -134,7 +146,7 @@ nav {
         color: rgb(255, 255, 255) !important;
         border: none;
         cursor: pointer;
-        @include abstracts.heading-style(2.5rem, 2.5rem, 600);
+        @include abstracts.heading-style(2rem, 2rem, 600);
         padding: 0 6rem 0 0;
         z-index: 3; // Ser till att knappen är över både menyn och container
 
