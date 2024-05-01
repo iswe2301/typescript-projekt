@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Course } from '../models/course';
+import { jsPDF } from 'jspdf'; // Importerar jsPDF för att kunna ladda ner ramschema som pdf
 
 @Injectable({
   providedIn: 'root'
@@ -68,4 +69,36 @@ export class SchemeService {
       this.scheme = JSON.parse(storedSchedule);
     }
   }
+
+  // Metod för att skapa en nedladdningsbar PDF (ramschema av typen course-interace)
+  generatePDF(schedule: Course[]): void {
+    const PDF = new jsPDF(); // Skapar en pdf
+
+    // Egenskaper
+    const x: number = 10; // X-positionen för texten
+    let y: number = 20; // Y-positionen för texten
+  
+    // Lägger till huvudrubrik och storlek på rubriken
+    PDF.setFontSize(20);
+    PDF.text("Ramschema", x, y);
+    y += 15; // Ökar Y-positionen för nästa text
+  
+    // Loopar igenom schemat och lägger till information om varje kurs på PDF:en
+    schedule.forEach(course => {
+      // Kontrollerar om nästa kurs ryms på sidan, annars läggs en ny sida till
+      if (y + 40 > PDF.internal.pageSize.height) {
+        PDF.addPage(); // Lägger till ny sida
+        y = 20; // Återställer Y-positionen för den nya sidan
+      }
+      PDF.setFontSize(12); // Minskar typsnittets storlek för kursinformationen
+      PDF.text(`Kurskod: ${course.courseCode}`, x, y); // Placeras 10 punkter från vänster (x)
+      PDF.text(`Kursnamn: ${course.courseName}`, x, y + 10); // Placeras 20 punkter nedanför y:s tidigare värde
+      PDF.text(`Poäng: ${course.points}`, x, y + 20);
+      PDF.text(`Ämne: ${course.subject}`, x, y + 30);
+      y += 50; // Ökar Y-positionen för nästa kurs
+    });
+    // Laddar ner/sparar PDF:en
+    PDF.save("ramschema.pdf");
+  }  
+
 }
