@@ -1,4 +1,23 @@
 @use 'abstracts';
+@use '@angular/material' as mat; // Importerar angular material
+
+// Inkluderar gemensamma stilar för Angular Material
+@include mat.core();
+
+// Definierar paletter till slidern
+$blue: mat.define-palette(mat.$blue-palette);
+$indigo: mat.define-palette(mat.$indigo-palette);
+
+// Skapar ett anpassat tema med paletterna
+$custom-theme: (
+  color: (
+    primary: $blue,
+    accent: $indigo
+  )
+);
+
+// Inkluderar stilar för slide-toggle med det anpassade temat
+@include mat.slide-toggle-theme(mat.define-light-theme($custom-theme));
 
 // Globala värden
 * {
@@ -27,7 +46,6 @@ body {
 // Huvudinnehåll
 main {
     @include abstracts.center-flex();
-    background: abstracts.$bg-color-white;
     width: 80%;
     max-width: 1200px;
     min-height: 100vh;
@@ -75,6 +93,33 @@ a {
     }
 }
 
+// DARK MODE STYLING
+body.dark-mode {
+    background-color: abstracts.$dark-background;
+    color: abstracts.$light-text-color;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    label {
+        color: abstracts.$light-text-color;
+    }
+
+    #paginator a {
+        color: abstracts.$light-text-color;
+    }
+
+    table {
+        background-color: darken(abstracts.$dark-background, 10%);
+
+        tbody tr:hover {
+            background-color: lighten(abstracts.$dark-background, 10%) !important; // Hover för tabellrader
+        }
+    }
+}
+
+// Mindre enheter
 @media (max-width: 600px) {
     h1 {
         font-size: 2.4rem;
