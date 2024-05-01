@@ -1,10 +1,12 @@
 <div id="scheme-container">
     <h2>Ramschema</h2>
-    <div id="table-container">
+    <!-- Nedladdningsknapp som anropar metod vid klick för att spara ramschema som PDF -->
+        <button id="download-btn" (click)="downloadPDF()">Spara som PDF <i class="fa-solid fa-file-pdf"></i></button>
+    <!-- Tabell för ramschema -->
+        <div id="table-container">
         <table id="course-table">
             <thead>
                 <tr>
-                    <!-- Eventbinding som vid klick anropar metod för att sortera kurser -->
                     <th>Kurskod</th>
                     <th id="name">Namn</th>
                     <th>Poäng</th>
@@ -24,7 +26,8 @@
                     <!-- Property bindning för att skapa en länk med datan -->
                     <td><a [href]="course.syllabus" target="_blank">Kursplan</a></td>
                     <!-- Knapp för att ta bort kursen från ramschemat, anropar metod vid klick -->
-                    <td><button (click)="removeFromScheme(course)">Ta bort <i class="fa-solid fa-trash-can"></i></button></td>
+                    <td><button (click)="removeFromScheme(course)">Ta bort <i
+                                class="fa-solid fa-trash-can"></i></button></td>
                 </tr>
             </tbody>
         </table>
