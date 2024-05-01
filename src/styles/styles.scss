@@ -16,8 +16,9 @@ $custom-theme: (
   )
 );
 
-// Inkluderar stilar för slide-toggle med det anpassade temat
+// Inkluderar stilar för slide-toggle och core-theme med det anpassade temat
 @include mat.slide-toggle-theme(mat.define-light-theme($custom-theme));
+@include mat.core-theme(mat.define-light-theme($custom-theme));
 
 // Globala värden
 * {
@@ -41,6 +42,11 @@ body {
     background-color: abstracts.$bg-color-white;
     color: abstracts.$text-color;
     height: 100%;
+
+    header label {
+        color: white;
+        padding-left: 0.8rem !important;
+    }
 }
 
 // Huvudinnehåll
