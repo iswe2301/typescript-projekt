@@ -63,6 +63,17 @@ button {
     }
 }
 
+// Styling för nedladdningsknapp (PDF)
+#download-btn {
+    background-color: abstracts.$link-color;
+    width: 20rem;
+    height: 3.5rem;
+
+    &:hover {
+        background-color: darken(abstracts.$link-color, 10%);
+    }
+}
+
 // Styling för mindre enheter
 @media (max-width: 600px) {
 
