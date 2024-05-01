@@ -35,4 +35,9 @@ export class SchemeComponent {
     this.scheme = this.schemeservice.getSchedule();
     this.totalPoints = this.schemeservice.getTotalPoints();
   }
+
+  // Metod för att ladda ner ramschema som PDF
+  downloadPDF(): void {
+    this.schemeservice.generatePDF(this.scheme); // Anropar service för att ladda ner ramschemat, skickar med ramschemat som arg.
+  }
 }
