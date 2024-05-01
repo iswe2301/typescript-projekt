@@ -7,6 +7,10 @@
     <div id="header-links">
         <a routerLink="/courses"><i class="fa-solid fa-magnifying-glass"></i> Sök kurser</a>
         <a routerLink="/"><i class="fa-solid fa-user"></i> Mina sidor</a>
+        <!-- Toggle-slider från Angular Material för att aktiver darkmode. Använder twoway data bindning, lyssnar på togglechange och anropar metod -->
+        <mat-slide-toggle color="primary" [(ngModel)]="darkMode" (toggleChange)="toggleDarkMode()">
+            Mörkt läge
+        </mat-slide-toggle>
     </div>
 </header>
 
