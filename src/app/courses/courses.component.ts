@@ -30,6 +30,9 @@ export class CoursesComponent {
   thisPage: number = 1;
   // Egenskap för antalet kurser som ska visas på en sida, initieras till 30
   coursesPerPage: number = 30;
+  // Egenskap för popupmeddelane
+  showPopup: boolean = false;
+  popupMessage: string = "";
 
   // Egenskaper för sorteringskolumn och sorteringsordning
   sortColumn: string = ""; // Initieras till tom textsträng
@@ -117,5 +120,13 @@ export class CoursesComponent {
   // Metod för att lägga till kurs i ramschemat när användaren klickar på lägg till-knappen
   addToScheme(course: Course): void {
     this.schemeservice.addToSchedule(course); // Anropar metod för att lägga till kurs i ramschemat (service).
+    this.displayPopup(); // Anropar metod för att visa popup
+  }
+
+  // Metod för att visa popup
+  displayPopup() {
+    this.showPopup = true; // Visar popup
+    this.popupMessage = "Kurs tillagd i ramschema" // Sätter innehållet på meddelandet
+    setTimeout(() => this.showPopup = false, 3000); // Sätter timeout, döljs efter 3 sekunder
   }
 }
