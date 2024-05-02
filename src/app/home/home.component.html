@@ -1,1 +1,24 @@
-<p>home works!</p>
+<!-- Container för animerat moln -->
+<div id="cloud">
+    <img id="cloud-image" src="./assets/images/cloud.svg" alt="Moln">
+    <div id="cloud-content">
+        <h2 id="cloud-heading">Vad drömmer du om?</h2>
+        <img id="think-bubble" src="./assets/images/think.svg" alt="Tänkbubbla">
+    </div>
+</div>
+
+<div id="intro">
+    <h3>Välkommen till din framtid!</h3>
+    <!-- Skriver ut antalet kurser med interpolation -->
+    <p>Sugen på att studera? Vi har {{ totalSubjects }} kurser att erbjuda dig inom:</p>
+</div>
+<div id="subject-container">
+    <!-- Loopar genom alla ämnen i listan med unika ämnen och skriver ut ämnena, stylar med styling från kursobjektet -->
+    <span *ngFor="let subject of courseSubjects" [ngStyle]="subject.style">
+        {{ subject.name }}
+    </span>
+</div>
+<div id="dream-btn">
+    <!-- Routing till kurssidan -->
+    <button routerLink="/courses">Hitta din drömkurs idag <i class="fa-solid fa-right-long"></i></button>
+</div>
