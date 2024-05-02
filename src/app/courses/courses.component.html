@@ -65,4 +65,6 @@
         <pagination-controls (pageChange)="thisPage = $event" previousLabel="Föregående"
             nextLabel="Nästa"></pagination-controls>
     </div>
+    <!-- Property bidning och interpolation för att visa popup m. meddelande, lägger till show-klassen när showPopup är true -->
+    <span [class.show]="showPopup" class="popup">{{ popupMessage }} <i class='fa-solid fa-check'></i></span>
 </div>
