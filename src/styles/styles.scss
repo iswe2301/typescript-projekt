@@ -31,6 +31,7 @@ $custom-theme: (
 html {
     font-size: 62.5%;
     height: 100%;
+    overflow-x: hidden;
 }
 
 // Body
@@ -38,6 +39,7 @@ body {
     font-size: 1.6rem;
     line-height: 2.6rem;
     font-family: abstracts.$font-text;
+    overflow-x: hidden;
     font-weight: 400;
     background-color: abstracts.$bg-color-white;
     color: abstracts.$text-color;
@@ -122,6 +124,10 @@ body.dark-mode {
         tbody tr:hover {
             background-color: lighten(abstracts.$dark-background, 10%) !important; // Hover för tabellrader
         }
+    }
+
+    #cloud-heading {
+        color: abstracts.$text-color;
     }
 }
 
