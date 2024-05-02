@@ -142,6 +142,37 @@ button {
     opacity: 1;
 }
 
+// Styling för popup
+.popup {
+    width: 100%;
+    transition: all 0.5s ease;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    background-color: abstracts.$link-color;
+    color: white;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+    font-family: abstracts.$font-text;
+    letter-spacing: 0.2rem;
+    font-weight: 600;
+    z-index: 5;
+    box-shadow: 0px -4px 10px 0px rgb(0 0 0 / 20%); // Skugga
+}
+
+// Styling för när popup visas
+.popup.show {
+    visibility: visible;
+    opacity: 1;
+    height: 5rem;
+    padding: 1rem;
+}
+
 // Styling för mindre enheter
 @media (max-width: 860px) {
     #filter-box {
