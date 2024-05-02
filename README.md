@@ -1,27 +1,40 @@
-# Project
+# DT208G - Programmering i TypeScript, Moment 5 Projekt
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.5.
+## Projektbeskrivning
+Detta projekt är en webbapplikation utvecklad för SWEUNiVERSiTETET, ett fiktivt universitet, för att underlätta för studenter att söka bland kurser och skapa ett personligt ramschema.
 
-## Development server
+Projektet har utvecklats som en del av kursen DT208G - Programmering i TypeScript.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Om applikationen
+Applikationen är byggd med Angular, HTML och TypeScript. Styling har gjorts med SCSS. All interaktion på applikationen hanteras genom Angulars komponenter och databinding. Användare kan filtrera kurser i tabellen genom att söka efter kurskod eller kursnamn, samt välja ut specifika ämnen för filtrering på ämne. Användare kan även sortera kurstabellen i stigande och fallande ordning baserat på kurskod, kursnamn, poäng eller ämne. Det går desdutom att lägga till kurser i ett eget ramchema och att ladda ner applikationen som en PWA.
 
-## Code scaffolding
+### Huvudfunktioner
+Webbapplikationen består av följande huvudfunktioner:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* **Sökfunktion**: Användare kan söka efter kurser baserat på kurskod eller kursnamn.
+* **Filtreringsfunktion**: Användare kan filtrera ut kurser baserat på det ämne som kursen tillhör genom att välja ett ämne i rullisten.
+* **Sorteringsfunktion**: Kurser kan sorteras efter kurskod, kursnamn, poäng eller ämne genom att klicka på respektive rubrik för kolumnen.
+* **Ramschema**: Användare kan lägga till valda kurser i ett personligt ramschema. Detta schema lagras i webbläsarens localStorage så att det är åtkomligt även efter att sidan laddats om.
+* **PDF Export**: Användare kan exportera sitt ramschema till en PDF-fil, vilket möjliggör nedladdning och utskrift för personligt bruk. Detta implementeras med hjälp av jsPDF-biblioteket.
+* **Pagination**: För att hantera och kunna navigera i stora datamängder används pagination i kurslistningen.
+* **Dark Mode**: Ett mörkt läge för användargränssnittet kan aktiveras. Om användaren har dark mode påslaget i sina inställningar så aktiveras mörkt läge automatiskt i applikationen.
+* **Responsiv Design**: Webbplatsen är optimerad för att automatiskt anpassa sig till olika skärmstorlekar.
 
-## Build
+### Tekniker och verktyg
+* **Angular & TypeScript**: Applikationen är byggd med Angular som ramverk och TypeScript som programmeringsspråk.
+* **Services**: Två huvudservices används; CourseService för att hantera data om kurser och SchemeService för hantering av ramschema.'
+* **Interfaces**:  För att säkerställa typning och strukturera data mer effektivt, har interfaces för kurser, kursämnen och styling av kursämnen skapats.
+* **LocalStorage**: För att behålla ramschemat även efter att sidan har laddats om används localStorage.
+* **HttpClient**: Används för att hämta kursdata från en extern JSON-fil.
+* **Angular Router**: Används för att hantera navigation och routing mellan olika sidor i applikationen, vilket stödjer single-page applications.
+* **Angular Material**: Används för komponenter som slide toggles.
+* **NgxPagination**: För paginering av kurslistan.
+* **jsPDF**: Används för att generera och ladda ner PDF-filer av användarens ramschema.
+* **PWA (Progressive Web App)**: Applikationen är en PWA, vilket gör det möjligt att installera den på användarens enhet och använda offline.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Om
+* **Av:** Isa Westling
+* **Kurs:** DT208G Programmering i TypeScript
+* **Program:** Webbutvecklingsprogrammet
+* **År:** 2024
+* **Skola:** Mittuniversitetet
