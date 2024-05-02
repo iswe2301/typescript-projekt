@@ -1,0 +1,99 @@
+@use '../../styles/abstracts';
+
+// Keyframes för animering
+@keyframes float {
+    0% {
+        transform: translateX(100vw); // Startar utanför höger vw
+    }
+
+    100% {
+        transform: translateX(-100vw); // Slutar utanför vänster vw
+    }
+}
+
+// Styling för moln-div
+#cloud {
+    position: relative; // Relativ position
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    animation: float 20s linear infinite; // Animering med keyframes, pågår under 20 sekunder och startar om
+}
+
+// Styling för moln-bild
+#cloud-image {
+    margin: 2rem 0;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+}
+
+// Styling för innehåll i moln
+#cloud-content {
+    position: absolute; // Absolut position
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); // Centrerar innehållet
+    z-index: 2;
+}
+
+// Styling för rubrik i moln
+#cloud-heading {
+    display: block;
+    margin: 0;
+}
+
+// Styling för tänkbubble-bild
+#think-bubble {
+    max-width: 50px;
+    display: block;
+    margin: 0;
+}
+
+// Styling för container av ämnen
+#subject-container {
+    text-align: center;
+    margin: 5rem 0;
+}
+
+#dream-btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2rem;
+}
+
+// Extend för knappstyling
+button {
+    @extend %button-style;
+    font-size: 1.6rem;
+    font-weight: 600;
+    width: 30rem;
+    height: 4rem;
+}
+
+// Styling för mindre enheter
+@media (max-width: 600px) {
+
+    button {
+        width: 100%;
+    }
+
+    #cloud-heading {
+        font-size: 1.8rem;
+    }
+
+    #think-bubble {
+        max-width: 40px;
+    }
+}
