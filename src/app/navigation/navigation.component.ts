@@ -21,15 +21,15 @@ export class NavigationComponent {
   // Egenskap för darkmode, sätts initalt till false
   darkMode: boolean = false;
 
-// Initmetod som körs när applikationen är startad och klar
-  ngOnInit() {
+  // Initmetod som körs när applikationen är startad och klar
+  ngOnInit(): void {
     // Kontrollerar om dark mode är aktiverat i användarens inställningar
     this.darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches; // Slår på knappen om darkmode är påslaget för användaren (true)
     document.body.classList.toggle("dark-mode", this.darkMode); // Lägger till klassen dark-mode till bodyn vid true, tar bort vid false
   }
 
   // Metod för att toggla darkmode-knapp
-  toggleDarkMode() {
+  toggleDarkMode(): void {
     this.darkMode = !this.darkMode; // Togglar värdet på egenskap (false - true)
     document.body.classList.toggle("dark-mode", this.darkMode); // Togglar klass för sidans body
   }
