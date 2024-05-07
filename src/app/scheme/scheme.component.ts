@@ -15,6 +15,7 @@ export class SchemeComponent {
   // Egenskaper
   scheme: Course[] = []; // Array för att lagra kurser i ramschemat, initeras till tom array av typen interfacet Course
   totalPoints: number = 0; // Totala antalet högskolepoäng i ramschemat, initeras till 0
+  courseCount: number = 0;  // Antal kurser, initeras till 0
 
     // Konstruktor som importerar service för ramschema
   constructor(private schemeservice: SchemeService) { }
@@ -25,6 +26,7 @@ export class SchemeComponent {
     this.scheme = this.schemeservice.getSchedule();
     // Hämtar totala antalet högskolepoäng i ramschemat
     this.totalPoints = this.schemeservice.getTotalPoints();
+    this.courseCount = this.scheme.length // Hämtar längden på antalet kurser i ramschemat
   }
 
   // Metod för att ta bort en kurs från ramschemat
@@ -34,6 +36,7 @@ export class SchemeComponent {
     // Uppdaterar visningen ramschemat och antalet högskolepoäng efter att kursen har tagits bort (anropar metoderna i servicen)
     this.scheme = this.schemeservice.getSchedule();
     this.totalPoints = this.schemeservice.getTotalPoints();
+    this.courseCount = this.scheme.length // Hämtar längden på antalet kurser i ramschemat
   }
 
   // Metod för att ladda ner ramschema som PDF

@@ -1,9 +1,14 @@
 <div id="scheme-container">
     <h2>Ramschema</h2>
+    <div>
+        <!-- Skriver ut antal kurser + HP med interpolation -->
+        <p><strong>Antal kurser:</strong> {{ courseCount }} stycken</p>
+        <p><strong>Totalt antal poäng:</strong> {{ totalPoints }} HP</p>
+    </div>
     <!-- Nedladdningsknapp som anropar metod vid klick för att spara ramschema som PDF -->
-        <button id="download-btn" (click)="downloadPDF()">Spara som PDF <i class="fa-solid fa-file-pdf"></i></button>
+    <button id="download-btn" (click)="downloadPDF()">Spara som PDF <i class="fa-solid fa-file-pdf"></i></button>
     <!-- Tabell för ramschema -->
-        <div id="table-container">
+    <div id="table-container">
         <table id="course-table">
             <thead>
                 <tr>
