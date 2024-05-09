@@ -28,8 +28,8 @@ export class CoursesComponent {
   displayedCourses: number = 0;
   // Egenskap för aktuell sida, initeras till 1
   thisPage: number = 1;
-  // Egenskap för antalet kurser som ska visas på en sida, initieras till 30
-  coursesPerPage: number = 30;
+  // Egenskap för antalet kurser som ska visas på en sida, initieras till 50
+  coursesPerPage: number = 50;
   // Egenskap för popupmeddelane
   showPopup: boolean = false;
   popupMessage: string = "";
@@ -58,8 +58,18 @@ export class CoursesComponent {
 
   // Metod för att uppdatera antalet kurser som visas
   updateCourseDisplay(): void {
-    // Sätter displayedCourses till längden på de filtrerade kurserna
-    this.displayedCourses = this.filteredCourses.length;
+    // Beräknar startindex för kurserna på aktuell sida
+    const startIndex: number = (this.thisPage - 1) * this.coursesPerPage; // T.ex. sid 2-1 * 50 = 50, startar på 50 då 50 kurser visats på sid 1
+    // Beräknar slutindex med math.min, returnerar antingen startindex + antal kurser per sida eller kursfiltreringens längd beroende på vad som är minst
+    const endIndex: number = Math.min(startIndex + this.coursesPerPage, this.filteredCourses.length); // T.ex. 50 + 50 eller 80, returnerar 80
+    // Uppdaterar visningen av antalet kurser till skillnaden mellan slut- och startindex
+    this.displayedCourses = endIndex - startIndex; // T.ex 80 - 50 = 30 st kvarvarande kurser på sid 2
+  }
+
+  // Metod för att uppdatera sidnummer + antal visade kurser vid byte av sida i paginering
+  changePage(newPage: number): void {
+    this.thisPage = newPage;  // Uppdaterar sidnumret
+    this.updateCourseDisplay();  // Anropar metod för att uppdatera antal visade kurser baserat på den nya sidan
   }
 
   // Metod för att filtrera kurser baserat på det valda ämnet
@@ -71,18 +81,22 @@ export class CoursesComponent {
       // Om ett ämne är valt filreras kurserna baserat på ämnet som har valts
       this.filteredCourses = this.courselist.filter(course => course.subject === this.selectedSubject);
     }
+    this.thisPage = 1; // Återställer till första sidan när filtrering sker
     // Uppdaterar antalet kurser som visas
     this.updateCourseDisplay();
   }
 
   // Metod för att söka efter kurs och lagra filtrerade kurser, returnerar inget värde
   searchCourse(): void {
+    // Återställer ämnesfiltreringen när en sökning görs
+    this.selectedSubject = "";
     // Filtrerar kurser utifrån kurslistan
     this.filteredCourses = this.courselist.filter((course) =>
       // Kontrollerar om söksträngen matchar kursnamn eller kurskod, gör om till gemener
       course.courseName.toLowerCase().includes(this.searchValue.toLowerCase()) ||
       course.courseCode.toLowerCase().includes(this.searchValue.toLowerCase())
     );
+    this.thisPage = 1; // Återställer till första sidan när filtrering sker
     // Uppdaterar antalet kurser som visas
     this.updateCourseDisplay();
   }
