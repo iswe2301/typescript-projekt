@@ -25,8 +25,8 @@
         </div>
     </div>
     <div>
-        <!-- Listar antalet kurser som visas av totala antalet kurser -->
-        <p>Listar {{ displayedCourses }} kurser av totalt {{ courselist.length }}.</p>
+        <!-- Listar antalet kurser som visas av totala antalet kurser (använder filtrerade listan för att stämma vid filtrering) -->
+        <p>Listar {{ displayedCourses }} kurser av totalt {{ filteredCourses.length }}.</p>
     </div>
     <div id="table-container">
         <table id="course-table">
@@ -61,8 +61,8 @@
         </table>
     </div>
     <div id="paginator">
-        <!-- Pagineringskomponent, ändrar namnen på labels till svenska -->
-        <pagination-controls (pageChange)="thisPage = $event" previousLabel="Föregående"
+        <!-- Pagineringskomponent, ändrar namnen på labels till svenska, anropar metod vid sidbyte för att uppdatera visning av sidnummer och antal kurser -->
+        <pagination-controls (pageChange)="changePage($event)" previousLabel="Föregående"
             nextLabel="Nästa"></pagination-controls>
     </div>
     <!-- Property bidning och interpolation för att visa popup m. meddelande, lägger till show-klassen när showPopup är true -->
